@@ -1,7 +1,6 @@
 #include <vector>
 #include <string>
 #include <map>
-#include "jason.cpp"
 
 enum variant_type { Symbol, Number, List, Proc, Lambda, Cadena };
 
