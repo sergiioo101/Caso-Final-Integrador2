@@ -42,9 +42,42 @@ Variant Variant::from_json_string(std::string sjson) {
     return Variant();  // Asegúrate de agregar una implementación adecuada
 }
 
+#include <iostream>
+
 int main() {
-    // Tu código principal aquí
+    // Crear instancias de Variant
+    Variant symbolVariant(Symbol);
+    Variant numberVariant(Number, "42");
+    Variant listVariant(List);
+    Variant procVariant([](const std::vector<Variant>& args) { return Variant(); });
+
+    // Mostrar información sobre las instancias
+    std::cout << "Symbol Variant Type: " << symbolVariant.type << std::endl;
+    std::cout << "Number Variant Type: " << numberVariant.type << ", Value: " << numberVariant.val << std::endl;
+    std::cout << "List Variant Type: " << listVariant.type << std::endl;
+    std::cout << "Proc Variant Type: " << procVariant.type << std::endl;
+
+    // Convertir a cadena y mostrar
+    std::cout << "Number Variant to String: " << numberVariant.to_string() << std::endl;
+
+    // Crear un mapa de Variant
+    Variant::map variantMap;
+    variantMap["key1"] = Variant(Symbol);
+    variantMap["key2"] = Variant(Number, "123");
+
+    // Mostrar información del mapa
+    std::cout << "Variant Map Size: " << variantMap.size() << std::endl;
+    std::cout << "Value for key1: " << variantMap["key1"].to_string() << std::endl;
+
+    // Convertir a cadena JSON y mostrar
+    std::string jsonStr = numberVariant.to_json_string();
+    std::cout << "Number Variant as JSON: " << jsonStr << std::endl;
+
+    // Crear una instancia de Variant a partir de una cadena JSON
+    Variant jsonVariant = Variant::from_json_string(jsonStr);
+    std::cout << "Variant from JSON: " << jsonVariant.to_string() << std::endl;
 
     return 0;
 }
+
 
